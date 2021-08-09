@@ -27,7 +27,7 @@ const recipeSchema = new Schema(
     default: ''
     }, 
 
-    reviews: [String]
+    //reviews: [String]
 
 })
 

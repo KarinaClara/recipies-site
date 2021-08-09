@@ -40,7 +40,7 @@ const userSchema = new Schema(
         default: ''
         }, 
     
-        reviews: [String]
+        //reviews: [String]
     }]
 
   },
