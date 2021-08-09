@@ -1,5 +1,6 @@
 const users = [
     {
+       
         email: 'julie@julie.com',
         username: 'KitchenJulie',
         recipes: [

@@ -1,0 +1,12 @@
+<h3> All recipes</h3>
+
+
+{{#each recipes}} </br>
+<h3> Title: </h3> {{this.title}}</br> 
+<h3> Content:</h3> {{this.content}}</br>
+<h3> Image:</h3> {{this.image}}</br>
+<a href="/recipes/{{this._id}}"> Details </a> </br>
+{{!-- {{#if  loggedIn}} --}}
+<a href="/recipes/{{this._id}}/edit"> Edit </a>
+
+{{/each}}
