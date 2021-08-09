@@ -2,11 +2,15 @@
 
 
 {{#each recipes}} </br>
-<h3> Title: </h3> {{this.title}}</br> 
-<h3> Content:</h3> {{this.content}}</br>
-<h3> Image:</h3> {{this.image}}</br>
-<a href="/recipes/{{this._id}}"> Details </a> </br>
-{{!-- {{#if  loggedIn}} --}}
-<a href="/recipes/{{this._id}}/edit"> Edit </a>
+<h3> Title: </h3> {{this.title}}
+<h3> Content:</h3> {{this.content}}
+<h3> Image:</h3> {{this.image}}
+<a href="/recipe/{{this._id}}"> Details </a> </br>
+
+{{#if isLoggedIn}}
+<a href="/recipe/{{this._id}}/edit"> Edit </a>
+{{/if}}
 
 {{/each}}
+
+

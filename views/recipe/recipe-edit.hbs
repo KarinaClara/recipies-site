@@ -1,0 +1,24 @@
+<h3> Edit recipe: {{recipe.title}} </h3>
+
+<form action="/recipe/{{recipe._id}}/edit" method="POST">
+
+    <label> Title:
+        <input type="text" name="title" value="{{recipe.title}}" />
+    </label>
+
+    <br />
+
+    <label> Content:
+        <input type="text" name="content" value="{{recipe.content}}" />
+    </label>
+
+    <br />
+
+    <label> Image:
+        <input type="file" name="image" value="{{recipe.image}}" />
+    </label>
+
+    <br />
+
+    <button type="submit"> Save changes </button>
+</form>
