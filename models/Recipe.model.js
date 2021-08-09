@@ -3,14 +3,7 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const recipeSchema = new Schema(
 {
-    user: {
-        username: {
-            type: String,
-            trim: true, //remove blank spaces 
-            required: [true, 'Username is required.'],
-            unique: true
-          },
-    },
+    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
     title: { 
     type: String,
@@ -25,15 +18,11 @@ const recipeSchema = new Schema(
     {
     type: String,
     default: ''
-    }, 
-
-    //reviews: [String]
+    },
 
 })
 
-   
-
-
+// FOR REVIEWS USE EMBEDDED STRUCTURE
 
 const Recipe = model("Recipe", recipeSchema);
 

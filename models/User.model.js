@@ -22,27 +22,6 @@ const userSchema = new Schema(
       required: [true, 'Password is required.']
     }, 
 
-    recipes: [
-      {
-      title: { 
-        type: String,
-        unique: true
-        },
-    
-        content: {
-        type: String,
-        unique: true
-        },
-    
-        image: 
-        {
-        type: String,
-        default: ''
-        }, 
-    
-        //reviews: [String]
-    }]
-
   },
   {
     timestamps: true
