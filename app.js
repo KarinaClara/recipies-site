@@ -27,8 +27,8 @@ app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 const index = require("./routes/index");
 app.use("/", index);
 
-const authRoutes = require("./routes/auth");
-app.use("/auth", authRoutes);
+const userRoutes = require("./routes/user.routes");
+app.use("/", userRoutes);
 
 const recipeRoutes = require("./routes/recipe.routes");
 app.use("/", recipeRoutes);
