@@ -6,7 +6,6 @@ const Recipe = require("../models/Recipe.model");
 
 //DISPLAY LIST
 router.get('/recipes', (req, res, next) => {
-
     Recipe.find()
         .then(allRecipes => {
             console.log('ALL RECIPES HELLO ', allRecipes)
@@ -29,11 +28,13 @@ router.post('/recipe/create', (req, res, next) => {
 
     Recipe.create({ author, title, content, image })
         .then(addRecipe => {
+            console.log('NEW BOOK CREATED', addRecipe)
             res.redirect('/recipes')
         })
         .catch(error => {
             console.log('Error while saving recipe', error)
             next(error)
+          
         })
 })
 
@@ -76,7 +77,7 @@ router.post('/recipe/:recipeId/edit', (req, res, next) => {
 
           
 //DETAILS PAGE
-router.get('/recipe/:recipeId', (req,res,next)=> {
+router.get('/recipe/:recipeId', (req, res, next)=> {
     const recipeId = req.params.recipeId
     Recipe.findById(recipeId)
     .then(recipeDetails => {
