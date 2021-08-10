@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const recipeSchema = new Schema(
 {
-    author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    author: {type: Schema.Types.ObjectId, ref: 'User'},
 
     title: { 
     type: String,
