@@ -14,12 +14,14 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/signup", isLoggedOut, (req, res) => {
+router.get("/signup", isLoggedIn, (req, res) => {
+  
   res.render("user/signup");
 });
 
-router.post("/signup", isLoggedOut, (req, res) => {
+router.post("/signup", isLoggedIn, (req, res) => {
   const { username, email, password } = req.body;
+
 
   if (!username || !email || !password) {
     const missingFields = {
@@ -77,6 +79,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
 });
 
 router.get("/login", isLoggedOut, (req, res) => {
+
   res.render("user/login");
 });
 

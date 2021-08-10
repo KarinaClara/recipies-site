@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
+
+//middleware
 const isLoggedIn = require("../middleware/isLoggedIn");
+
+//cloudinary
 
 const Recipe = require("../models/Recipe.model");
 
@@ -77,7 +81,7 @@ router.post('/recipe/:recipeId/edit', (req, res, next) => {
 
           
 //DETAILS PAGE
-router.get('/recipe/:recipeId', (req, res, next)=> {
+router.get('/recipe/:recipeId', isLoggedIn, (req, res, next)=> {
     const recipeId = req.params.recipeId
     Recipe.findById(recipeId)
     .then(recipeDetails => {
@@ -87,6 +91,20 @@ router.get('/recipe/:recipeId', (req, res, next)=> {
         console.log('There was an error while displaying the details', error)
         next(error)
     })
+})
+// DELETE
+router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
+    const {recipeId} = req.params
+    Recipe.findByIdAndDelete(recipeId)
+    .then( () => {
+        res.redirect('/recipes')
+    })
+    .catch(error => {
+        console.log('Error while deleting recipe', error)
+        next(error)
+        
+    })
+
 })
 
 module.exports = router;
