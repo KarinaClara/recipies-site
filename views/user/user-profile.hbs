@@ -1,0 +1,17 @@
+<h2>Welcome, {{userInSession.username}}!</h2>
+
+<h4>Your details:</h4>
+<h5>Username: {{userInSession.username}}</h5>
+<h5>Email: {{userInSession.email}}</h5>
+<img
+  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzz8Wt2RZYSIXPMn8pppGQjRtczNLy95IRQw&usqp=CAU"
+  alt="{{userInSession.username}} profile picture"
+/>
+
+<h4>Your recipes:</h4>
+
+{{! do a loop hear for all users recipes}}
+
+{{! link takes you to recipe details page }}
+<li><a>Title: Best pizza ever</a></li>
+<li><a>Title: My favourite breakfast</a></li>

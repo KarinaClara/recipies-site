@@ -14,6 +14,10 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+router.get("/user-profile", isLoggedIn, (req, res) => {
+  res.render("user/user-profile", { userInSession: req.session.user });
+});
+
 router.get("/signup", isLoggedOut, (req, res) => {
   res.render("user/signup");
 });
@@ -60,7 +64,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+        res.redirect("user/user-profile");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -110,7 +114,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         }
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
+        return res.redirect("/user-profile");
       });
     })
 
@@ -125,10 +129,10 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).render("user/logout", { errorMessage: err.message });
+      return res.status(500).render("user/login", { errorMessage: err.message });
     }
-    res.redirect("/");
+    res.redirect("/login");
   });
 });
 
-module.exports = router; 
+module.exports = router;
