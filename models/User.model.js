@@ -22,6 +22,8 @@ const userSchema = new Schema(
       required: [true, 'Password is required.']
     }, 
 
+    recipes: [{ type: Schema.Types.ObjectId, ref: "Recipe" }]
+
   },
   {
     timestamps: true

@@ -9,13 +9,26 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const Recipe = require('../models/Recipe.model');
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/user-profile", isLoggedIn, (req, res) => {
-  res.render("user/user-profile", { userInSession: req.session.user });
+
+  const userId = req.session.user._id;
+
+  User.findById(userId)
+    .populate("recipes")
+    .then((singleUserFromDb) => {
+      res.render("user/user-profile", { recipesArr: singleUserFromDb.recipes });
+    })
+    .catch((err) => {
+      console.log(`Error while getting user details: ${err}`);
+      next(err);
+    })
+
 });
 
 router.get("/signup", isLoggedOut, (req, res) => {

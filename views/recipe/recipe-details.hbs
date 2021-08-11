@@ -1,12 +1,14 @@
 <h2> Recipe details: </h2>
 
 <section>
+    {{#if userData}}
     <button><a href="/recipe/{{recipe._id}}/edit"> Edit recipe </a></button>
+    {{/if}}
 </section>
 <hr /><br />
 <section>
     <h3>Title: {{recipe.title}} </h3> <br />
-    <strong>Author:</strong> {{recipe.author}} <br />
+    <strong>Author:</strong> {{recipe.author.username}} <br />
     <strong>Content:</strong> {{recipe.content}} <br />
     
     {{#if recipe.imageURL}}

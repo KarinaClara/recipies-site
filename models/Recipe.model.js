@@ -13,8 +13,8 @@ const recipeSchema = new Schema(
     content: String,
 
     imageURL: String, 
-    
 
+    
 })
 
 // FOR REVIEWS USE EMBEDDED STRUCTURE

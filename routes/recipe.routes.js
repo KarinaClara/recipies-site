@@ -6,36 +6,44 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 //cloudinary
 const Recipe = require('../models/Recipe.model');
+const User = require('../models/User.model');
 const fileUploader = require('../config/cloudinary.config')
 
 
 
 //DISPLAY LIST
-router.get("/recipes", (req, res, next) => {
-  Recipe.find()
-    .then((allRecipes) => {
-      res.render("recipe/recipes", { recipes: allRecipes });
-    })
-    .catch((error) => {
-      console.log("Error while getting the recipes: ", error);
-      next(error);
-    });
+router.get('/recipes', (req, res, next) => {
+    Recipe.find()
+        .then(allRecipes => {
+            //console.log('ALL RECIPES HELLO ', allRecipes)
+            res.render('recipe/recipes', { recipes: allRecipes })
+        })
+        .catch(error => {
+            console.log('Error while getting the recipes: ', error)
+            next(error)
+        })
+
 });
 
 // CREATE
-router.get("/recipe/create", (req, res, next) => {
-  res.render("recipe/new-recipe");
-});
+router.get('/recipe/create', isLoggedIn, (req, res, next) => {
+    res.render("recipe/new-recipe")
+})
 
-
-router.post('/recipe/create', fileUploader.single('recipe-cover-image'), (req, res, next) => {
-    const { author, title, content } = req.body; //deleted image from object
+router.post('/recipe/create', fileUploader.single('recipe-cover-image'), isLoggedIn, (req, res, next) => {
+    const { author , title, content } = req.body; 
+    //console.log('CONSOLE LOG REQ BODY: ', req.body.author)
      
     const imageURL = req.file.path 
 
-    Recipe.create({ author, title, content, imageURL }) //deleted img
-        .then(addRecipe => {
-            console.log('NEW BOOK CREATED', addRecipe)
+    Recipe.create({ author, title, content, imageURL })
+    .then((newRecipe) => {
+        //console.log('THERE IS NEW REC', newRecipe)
+        //console.log('AUTHOOOR', author)
+        return User.findByIdAndUpdate(author, { $push: { recipes: newRecipe._id, newRecipe } });
+      })
+        .then((newRecipe)=> {
+           // console.log('THERE IS NEW REC 2222', newRecipe)
             res.redirect('/recipes')
         })
         .catch(error => {
@@ -45,13 +53,22 @@ router.post('/recipe/create', fileUploader.single('recipe-cover-image'), (req, r
         })
 })
 
-
 //EDIT & UPDATE
 
-router.get("/recipe/:recipeId/edit", (req, res, next) => {
-  const recipeId = req.params.recipeId;
+router.get('/recipe/:recipeId/edit', isLoggedIn, (req, res, next) => {
+    const recipeId = req.params.recipeId
 
-router.post('/recipe/:recipeId/edit', fileUploader.single('recipe-cover-image'), (req, res, next) => {
+    Recipe.findById(recipeId)
+        .then(recipeToEdit => {
+            res.render('recipe/recipe-edit', { recipe: recipeToEdit })
+        })
+        .catch(error => {
+            console.log('There was an error while updating data', error)
+            next(error)
+        })
+})
+
+router.post('/recipe/:recipeId/edit', fileUploader.single('recipe-cover-image'), isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
     const {author, title, content } = req.body //deleted image property
 
@@ -68,36 +85,25 @@ router.post('/recipe/:recipeId/edit', fileUploader.single('recipe-cover-image'),
 
     Recipe.findByIdAndUpdate(recipeId, recipeData, {new:true})
     .then(updatedRecipe => {
-        console.log('UPDATED RECCC', updatedRecipe)
         res.redirect(`/recipe/${updatedRecipe._id}`)
       
     })
-    .catch((error) => {
-      console.log("There was an error while updating data", error);
-      next(error);
-    });
-});
-
-router.post("/recipe/:recipeId/edit", (req, res, next) => {
-  const { recipeId } = req.params.recipeId;
-  const { author, title, content, image } = req.body;
-  Recipe.findByIdAndUpdate(recipeId, { author, title, content, image }, { new: true })
-    .then((updatedRecipe) => {
-      res.redirect(`/recipe/${updatedRecipe._id}`);
+    .catch(error => {
+        console.log('There was an error while updating data', error)
+        next(error)
     })
-    .catch((error) => {
-      console.log("There was an error while updating data", error);
-      next(error);
-    });
-});
+})
 
 
+          
 //DETAILS PAGE
-router.get('/recipe/:recipeId', isLoggedIn, (req, res, next)=> {
+router.get('/recipe/:recipeId', (req, res, next)=> {
     const recipeId = req.params.recipeId
+
     Recipe.findById(recipeId)
+    .populate('author')
     .then(recipeDetails => {
-        console.log('RECIPE RECIPE', recipeDetails )
+        //console.log('THIS RE THE DETAILS')
         res.render('recipe/recipe-details', {recipe: recipeDetails})
     })
     .catch(error => {
@@ -105,6 +111,7 @@ router.get('/recipe/:recipeId', isLoggedIn, (req, res, next)=> {
         next(error)
     })
 })
+
 // DELETE
 router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
     const {recipeId} = req.params
