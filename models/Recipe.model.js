@@ -10,15 +10,10 @@ const recipeSchema = new Schema(
     unique: true
     },
 
-    content: {
-    type: String,
-    },
+    content: String,
 
-    image: 
-    {
-    type: String,
-    default: ''
-    },
+    imageURL: String, 
+    
 
 })
 

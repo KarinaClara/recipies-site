@@ -2,10 +2,11 @@
 
 
 {{#each recipes}} </br>
-<h3> Title: </h3> {{this.title}}
-<h3> Image:</h3> {{this.image}}
+<h3> Title: {{this.title}} </h3> 
+<h3> Image:</h3> 
+<img src=" {{this.imageURL}} "> 
 
-
+</br> 
 {{!-- {{#if isLoggedIn}} --}}
 <button><a href="/recipe/{{this._id}}"> Details </a> </button> 
 

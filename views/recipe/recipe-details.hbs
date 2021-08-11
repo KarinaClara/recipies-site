@@ -1,9 +1,24 @@
-<h2>  Recipe details:  </h2>
+<h2> Recipe details: </h2>
 
 <section>
-    <h3>Title: {{recipe.title}} </h3> </br>  
-    <strong>Author:</strong> {{recipe.author}} <br/>
-    <strong>Content:</strong> {{recipe.content}} </br>
-    <strong>Image:</strong> {{recipe.image}}
-
+    <button><a href="/recipe/{{recipe._id}}/edit"> Edit recipe </a></button>
 </section>
+<hr /><br />
+<section>
+    <h3>Title: {{recipe.title}} </h3> <br />
+    <strong>Author:</strong> {{recipe.author}} <br />
+    <strong>Content:</strong> {{recipe.content}} <br />
+    
+    {{#if recipe.imageURL}}
+        <img src="{{recipe.imageURL}}" alt="{{recipe.title}}">
+    {{else}}
+        {{!-- <img src="{{}}" alt="{{}}"> --}}
+        Default image
+    {{/if}}
+</section>
+
+<br />
+<hr /><br />
+
+
+<button> <a href="/recipes">Back to list</a> </button>

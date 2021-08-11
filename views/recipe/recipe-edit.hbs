@@ -1,6 +1,6 @@
 <h3> Edit recipe: {{recipe.title}} </h3>
 
-<form action="/recipe/{{recipe._id}}/edit" method="POST">
+<form action="/recipe/{{recipe._id}}/edit" method="POST" enctype="multipart/form-data">
 
     <label> Title:
         <input type="text" name="title" value="{{recipe.title}}" />
@@ -14,8 +14,8 @@
 
     <br />
 
-    <label> Image:
-        <input type="file" name="image" value="{{recipe.image}}" />
+    <label> Cover image:
+        <input type="file" name="recipe-cover-image" value="{{recipe.imageURL}}" />
     </label>
 
     <br />
