@@ -1,16 +1,25 @@
-<h3> All recipes</h3>
+<h2> All recipes</h2>
 
 
 {{#each recipes}} </br>
-<h3> Title: </h3> {{this.title}}
-<h3> Content:</h3> {{this.content}}
-<h3> Image:</h3> {{this.image}}
-<a href="/recipe/{{this._id}}"> Details </a> </br>
+<h3> Title: {{this.title}} </h3> 
+<h3> Image:</h3> 
+<img src=" {{this.imageURL}} "> 
 
-{{#if isLoggedIn}}
-<a href="/recipe/{{this._id}}/edit"> Edit </a>
-{{/if}}
+</br> 
+{{!-- {{#if isLoggedIn}} --}}
+<button><a href="/recipe/{{this._id}}"> Details </a> </button> 
 
+<br>
+</br> 
+
+<form class="delete-form" action="/recipe/{{this._id}}/delete" method="POST">
+            <button>Delete</button>
+        </form>
+
+
+{{!-- {{/if}} --}}
 {{/each}}
+
 
 

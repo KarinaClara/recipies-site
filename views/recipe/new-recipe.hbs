@@ -1,21 +1,22 @@
 <h3> Add new Recipe</h3>
 
-<form action="/recipe/create" method="POST"> 
+<form action="/recipe/create" method="POST" enctype="multipart/form-data">
 
-<label> Title: </label>
-<input type="text" name="title" />
-  
-  <br/>
+    <label> Title: </label>
+    <input type="text" name="title" />
 
-<label> Content:</label>
-<input type="text" name="content" />
-  
-    <br/>
+    <br />
 
- <label> Image: </label> 
-<input type="file" name="image" /> 
-  
-    <br/>
+    <label> Content:</label>
+    <textarea type="text" name="content"> </textarea>
 
-<button type="submit"> Add recipe </button>
+    <br />
+
+    <label> Cover image:
+        <input type="file" name="recipe-cover-image" value="{{recipe.image}}" />
+    </label>
+
+    <br />
+
+    <button type="submit"> Add recipe </button>
 </form>
