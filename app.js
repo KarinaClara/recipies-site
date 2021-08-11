@@ -23,6 +23,9 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
+const passDataToHbs = require("./middleware/passDataToHbs");
+app.use("/", passDataToHbs);
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);

@@ -8,27 +8,29 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
-   <body>
-      <header>
-         <nav>
-            
-            {{#if isLoggedOut}}
-            <a href="/">Home</a>
-            <a href="/signup">Signup</a>
-            <a href="/login">Login</a>
-            <a href="/recipes">Recipes</a>
-            {{/if}}
+  <body>
+    <header>
+      <nav>
 
-            {{#if isLoggedIn}}
-            <a href="/">Home</a>
+        <a href="/">Home</a>
+        <a href="/recipes">Recipes</a>
+
+        {{#if userData}}
+          <div>
+            <a href="/user-profile">My Profile</a>
             <a href="/recipe/create">Create a recipe</a>
             <a href="/logout">Logout</a>
-            {{/if}}
+          </div>
+        {{else}}
+          <div>
+            <a href="/signup">Signup</a>
+            <a href="/login">Login</a>
+          </div>
 
+        {{/if}}
 
-         </nav>
-      </header>
-  
+      </nav>
+    </header>
 
     {{{body}}}
 
