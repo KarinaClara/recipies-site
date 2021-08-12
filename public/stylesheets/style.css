@@ -1,6 +1,5 @@
 .navbar {
   padding: 0 30px;
-  border-bottom: 2px solid #e80c7a;
 }
 
 .navbar-collapse {
@@ -23,39 +22,58 @@
 
 .landing-page-all-buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: 40px;
-}
-
-.landing-page-all-buttons.a {
-  text-align: center;
 }
 
 .landing-page-all-buttons a {
   color: black;
   font-size: 22px;
-  background-color: #e80c7a;
+  border: 1px solid #e80c7a;
   border-radius: 0.25rem;
   width: 260px;
+  margin: 0 20px;
 }
 .landing-page-all-buttons a:hover {
   color: white;
+  background-color: #e80c7a;
 }
 
 .body-container {
   padding: 40px;
 }
 
+.page-headline {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.buttons-user-profile {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  top: -50px;
+}
+
+.buttons-user-profile a,
+.buttons-user-profile form button {
+  color: black;
+  width: 80px;
+  background-color: none;
+  text-decoration: none;
+  border: none;
+}
+
+.buttons-user-profile a:hover,
+.buttons-user-profile form button:hover {
+  color: #e80c7a;
+}
+
 #form {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-}
-
-#user-profile-page h2,
-#form h2 {
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 #form .error {
@@ -75,9 +93,10 @@
 
 #user-profile-page {
   width: 80%;
-  margin: 40px auto;
+  margin: 20px auto;
   border: 2px solid #e80c7a;
   border-radius: 0.25rem;
+  position: relative;
 }
 
 .user-profile-item {
@@ -94,5 +113,5 @@
 }
 
 .recipe-array-item:hover {
-  color: darkgrey;
+  color: #e80c7a;
 }
