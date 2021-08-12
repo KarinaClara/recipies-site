@@ -71,6 +71,7 @@ router.get('/recipe/:recipeId/edit', isLoggedIn, (req, res, next) => {
 router.post('/recipe/:recipeId/edit', fileUploader.single('recipe-cover-image'), isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
     const {author, title, content } = req.body 
+    console.log('HELLO:', req.body  )
 
     //to display latest image if user doesn't upload any 
     const recipeData = { 
@@ -114,8 +115,10 @@ router.get('/recipe/:recipeId', (req, res, next)=> {
 // DELETE
 router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
     const {recipeId} = req.params
+    console.log('CONSOLEE', recipeId)
     Recipe.findByIdAndDelete(recipeId)
-    .then( () => {
+    .then( (recipeId) => {
+        console.log('CONSOLEE 22', recipeId)
         res.redirect('/recipes')
     })
     .catch(error => {

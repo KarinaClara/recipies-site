@@ -2,26 +2,38 @@
 
 <section>
     {{#if userData}}
-    <button><a href="/recipe/{{recipe._id}}/edit"> Edit recipe </a></button>  |
-    <button><a href="/recipe/{{recipe._id}}/delete"> Delete recipe </a></button>
+    <button><a href="/recipe/{{recipe._id}}/edit"> Edit recipe </a></button>
+    <br />
+    <form class="delete-form" action="/recipe/{{recipe._id}}/delete" method="POST">
+        <button>Delete recipe</button>
+    </form>
     {{/if}}
 </section>
 <hr /><br />
 <section>
-    <h3>Title: {{recipe.title}} </h3> <br />
+    <h3>{{recipe.title}} </h3> <br />
     <strong>Author:</strong> {{recipe.author.username}} <br />
-    <strong>Content:</strong> {{recipe.content}} <br />
-    
+    {{recipe.content}} <br />
+
     {{#if recipe.imageURL}}
-        <img src="{{recipe.imageURL}}" alt="{{recipe.title}}">
+    <img class="recipe-image" src="{{recipe.imageURL}}" alt="{{recipe.title}}">
     {{else}}
-        {{!-- <img src="{{}}" alt="{{}}"> --}}
-        Default image
+    {{!-- <img src="{{}}" alt="{{}}"> --}}
+    Default image
     {{/if}}
 </section>
 
 <br />
 <hr /><br />
 
-
 <button> <a href="/recipes">Back to list</a> </button>
+
+
+
+
+
+
+
+
+
+{{!-- --}}

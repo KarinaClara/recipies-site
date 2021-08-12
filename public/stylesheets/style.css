@@ -49,3 +49,7 @@
 .recipe-array-item:hover {
   color: darkgrey;
 }
+
+.recipe-image {
+  height: 200px;
+}
