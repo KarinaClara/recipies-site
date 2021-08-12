@@ -1,16 +1,24 @@
-<h2>Welcome, {{userData.username}}!</h2>
+<div class="row g-3" id="user-profile-page">
+  <h2>Welcome, {{user.username}}!</h2>
 
-<h4>Your details:</h4>
-<h5>Username: {{userData.username}}</h5>
-<h5>Email: {{userData.email}}</h5>
-<img
-  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzz8Wt2RZYSIXPMn8pppGQjRtczNLy95IRQw&usqp=CAU"
-  alt="{{userData.username}} profile picture"
-/>
+  <a href="/user-profile/edit"> Edit </a>
+  <form class="delete-form" action="/user-profile/delete" method="POST">
+    <button>Delete</button>
+  </form>
 
-<h4>Your recipes:</h4>
+  <div class="user-profile-item">
+    <p>Username:</p>
+    <h5> {{user.username}}</h5>
+  </div>
+  <div class="user-profile-item">
+    <p>Email: </p>
+    <h5>{{user.email}}</h5>
+  </div>
 
+  <h6>Your recipes:</h6>
 
-{{#each recipesArr}} 
-<li><a>Title: {{this.title}}</a></li>
-{{/each}} 
+  {{#each user.recipes}}
+    <a class="recipe-array-item" href="/recipe/{{this._id}}"> &#9755; {{this.title}}</a>
+  {{/each}}
+
+</div>

@@ -14,24 +14,22 @@
     </div>
   {{/if}}
 
-  <form action="/signup" method="POST">
-
-    <label>
-      Username
-      <input type="text" name="username" placeholder="ironhacker" />
-    </label>
-
-    <label>
-      Email
-      <input type="email" name="email" placeholder="ironhacker@ironhack.com" />
-    </label>
-
-    <label>
-      Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
-
-    <button id="createAccountButton" type="submit">Create account</button>
-
+  <form class="row g-3" action="/signup" method="POST">
+    <div class="col-12">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" name="username" placeholder="foodie123" />
+    </div>
+    <div class="col-12">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" placeholder="foodie123@email.com" />
+    </div>
+    <div class="col-12">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="********" />
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </div>
   </form>
+
 </div>

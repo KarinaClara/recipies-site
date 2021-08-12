@@ -5,19 +5,17 @@
     <p class="error">{{errorMessage}}</p>
   {{/if}}
 
-  <form action="/login" method="POST">
-
-    <label>
-      Username
-      <input type="text" name="username" placeholder="ironhacker" />
-    </label>
-
-    <label>
-      Password
-      <input type="password" name="password" placeholder="********" />
-    </label>
-
-    <button id="loginButton" type="submit">Login</button>
-
+  <form class="row g-3" action="/login" method="POST">
+    <div class="col-12">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" name="username" placeholder="foodie123" />
+    </div>
+    <div class="col-12">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" placeholder="********" />
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
   </form>
 </div>

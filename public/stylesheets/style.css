@@ -1,12 +1,51 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.navbar {
+  padding: 20px 30px;
 }
 
-a {
-  color: #00b7ff;
+.navbar-collapse {
+  justify-content: flex-end;
 }
 
-h1 {
-  color: 15px;
+.body-container {
+  padding: 40px;
+}
+
+#form {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#user-profile-page h2,
+#form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#form .error {
+  color: red;
+}
+
+#user-profile-page {
+  width: 80%;
+  margin: 40px auto;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.user-profile-item {
+  display: flex;
+}
+
+.user-profile-item p {
+  margin-right: 20px;
+}
+
+.recipe-array-item {
+  color: black;
+  text-decoration: none;
+}
+
+.recipe-array-item:hover {
+  color: darkgrey;
 }

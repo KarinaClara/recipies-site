@@ -4,40 +4,87 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 
-// How many rounds should bcrypt run the salt (default [10 - 12 rounds])
 const saltRounds = 10;
 
-// Require the User model in order to interact with the database
 const User = require("../models/User.model");
-const Recipe = require('../models/Recipe.model');
+const Recipe = require("../models/Recipe.model");
 
-// Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 router.get("/user-profile", isLoggedIn, (req, res) => {
-
   const userId = req.session.user._id;
 
   User.findById(userId)
     .populate("recipes")
     .then((singleUserFromDb) => {
-      res.render("user/user-profile", { recipesArr: singleUserFromDb.recipes });
+      res.render("user/user-profile", { user: singleUserFromDb });
     })
     .catch((err) => {
       console.log(`Error while getting user details: ${err}`);
       next(err);
-    })
+    });
+});
 
+router.get("/user-profile/edit", isLoggedIn, (req, res, next) => {
+  const userId = req.session.user._id;
+
+  User.findById(userId)
+    .then((userToEdit) => {
+      res.render("user/edit-profile", { user: userToEdit });
+    })
+    .catch((error) => {
+      console.log("There was an error while displaying user profile to edit", error);
+      next(error);
+    });
+});
+
+router.post("/user-profile/edit", isLoggedIn, (req, res, next) => {
+  const userId = req.session.user._id;
+  const { username, email } = req.body;
+
+  if (!username || !email) {
+    const missingFields = {
+      username: !username,
+      email: !email,
+    };
+    return res.status(400).render("user/signup", { errorMessage: "Please fill all fields", missingFields });
+  }
+
+  User.findByIdAndUpdate(userId, { username, email }, { new: true })
+    .then((updatedUser) => {
+      res.redirect("/user-profile");
+    })
+    .catch((error) => {
+      console.log("There was an error while updating user data", error);
+      next(error);
+    });
+});
+
+router.post("/user-profile/delete", isLoggedIn, (req, res, next) => {
+  const userId = req.session.user._id;
+  User.findByIdAndDelete(userId)
+    .then(() => {
+      req.session.destroy((err) => {
+        if (err) {
+          return res.status(500).render("user/login", { errorMessage: err.message });
+        }
+        res.redirect("/signup");
+      });
+    })
+    .catch((error) => {
+      console.log("Error while deleting user", error);
+      next(error);
+    });
 });
 
 router.get("/signup", isLoggedOut, (req, res) => {
+  console.log("INSIDE GET ROUTE");
   res.render("user/signup");
 });
 
-router.post("/signup", isLoggedIn, (req, res) => {
+router.post("/signup", isLoggedOut, (req, res) => {
   const { username, email, password } = req.body;
-
 
   if (!username || !email || !password) {
     const missingFields = {
@@ -56,19 +103,15 @@ router.post("/signup", isLoggedIn, (req, res) => {
     });
   }
 
-  // Search the database for a user with the username submitted in the form
   User.findOne({ username }).then((found) => {
-    // If the user is found, send the message username is taken
     if (found) {
       return res.status(400).render("user/signup", { errorMessage: "Username already taken." });
     }
 
-    // if user is not found, create a new user - start with hashing the password
     return bcrypt
       .genSalt(saltRounds)
       .then((salt) => bcrypt.hash(password, salt))
       .then((hashedPassword) => {
-        // Create a user and save it in the database
         return User.create({
           username,
           email,
@@ -76,9 +119,8 @@ router.post("/signup", isLoggedIn, (req, res) => {
         });
       })
       .then((user) => {
-        // Bind the user to the session object
         req.session.user = user;
-        res.redirect("user/user-profile");
+        res.redirect("/user-profile");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -95,7 +137,6 @@ router.post("/signup", isLoggedIn, (req, res) => {
 });
 
 router.get("/login", isLoggedOut, (req, res) => {
-
   res.render("user/login");
 });
 
@@ -106,38 +147,30 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     return res.status(400).render("user/login", { errorMessage: "Please provide your username." });
   }
 
-  // Here we use the same logic as above
-  // - either length based parameters or we check the strength of a password
   if (password.length < 8) {
     return res.status(400).render("user/login", {
       errorMessage: "Your password needs to be at least 8 characters long.",
     });
   }
 
-  // Search the database for a user with the username submitted in the form
   User.findOne({ username })
     .then((user) => {
-      // If the user isn't found, send the message that user provided wrong credentials
       if (!user) {
         return res.status(400).render("user/login", { errorMessage: "Wrong credentials." });
       }
 
-      // If user is found based on the username, check if the in putted password matches the one saved in the database
       bcrypt.compare(password, user.passwordHash).then((isSamePassword) => {
         if (!isSamePassword) {
           return res.status(400).render("user/login", { errorMessage: "Wrong credentials." });
         }
         req.session.user = user;
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
         return res.redirect("/user-profile");
       });
     })
 
     .catch((err) => {
-      // in this case we are sending the error handling to the error handling middleware that is defined in the error handling file
-      // you can just as easily run the res.status that is commented out below
       next(err);
-      // return res.status(500).render("login", { errorMessage: err.message });
+      return res.status(500).render("login", { errorMessage: err.message });
     });
 });
 
