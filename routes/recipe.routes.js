@@ -70,9 +70,9 @@ router.get('/recipe/:recipeId/edit', isLoggedIn, (req, res, next) => {
 
 router.post('/recipe/:recipeId/edit', fileUploader.single('recipe-cover-image'), isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
-    const {author, title, content } = req.body //deleted image property
+    const {author, title, content } = req.body 
 
-    //to display latest image if user doesn't upload any when editing
+    //to display latest image if user doesn't upload any 
     const recipeData = { 
         author,
         title, 
@@ -103,7 +103,6 @@ router.get('/recipe/:recipeId', (req, res, next)=> {
     Recipe.findById(recipeId)
     .populate('author')
     .then(recipeDetails => {
-        //console.log('THIS RE THE DETAILS')
         res.render('recipe/recipe-details', {recipe: recipeDetails})
     })
     .catch(error => {

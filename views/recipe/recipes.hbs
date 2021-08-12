@@ -6,19 +6,20 @@
 <h3> Image:</h3> 
 <img src=" {{this.imageURL}} "> 
 
+<br>
 </br> 
-{{!-- {{#if isLoggedIn}} --}}
+
 <button><a href="/recipe/{{this._id}}"> Details </a> </button> 
 
 <br>
 </br> 
 
-<form class="delete-form" action="/recipe/{{this._id}}/delete" method="POST">
-            <button>Delete</button>
+{{!-- <form class="delete-form" action="/recipe/{{this._id}}/delete" method="POST"> --}}
+            {{!-- <button>Delete</button> --}}
         </form>
 
 
-{{!-- {{/if}} --}}
+
 {{/each}}
 
 
