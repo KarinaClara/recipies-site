@@ -1,9 +1,45 @@
 .navbar {
-  padding: 20px 30px;
+  padding: 0 30px;
+  border-bottom: 2px solid #e80c7a;
 }
 
 .navbar-collapse {
   justify-content: flex-end;
+}
+
+#page-logo {
+  height: 60px;
+}
+
+.landing-page-body {
+  margin-top: 40px;
+  text-align: center;
+  padding: 40px 0;
+}
+
+#landing-page-logo {
+  height: 240px;
+}
+
+.landing-page-all-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.landing-page-all-buttons.a {
+  text-align: center;
+}
+
+.landing-page-all-buttons a {
+  color: black;
+  font-size: 22px;
+  background-color: #e80c7a;
+  border-radius: 0.25rem;
+  width: 260px;
+}
+.landing-page-all-buttons a:hover {
+  color: white;
 }
 
 .body-container {
@@ -23,13 +59,24 @@
 }
 
 #form .error {
-  color: red;
+  color: #e80c7a;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #e80c7a;
+  border-color: #e80c7a;
+}
+
+.btn-primary:focus {
+  box-shadow: none !important;
 }
 
 #user-profile-page {
   width: 80%;
   margin: 40px auto;
-  border: 1px solid #ced4da;
+  border: 2px solid #e80c7a;
   border-radius: 0.25rem;
 }
 
