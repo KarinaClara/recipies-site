@@ -116,6 +116,22 @@
   color: #e80c7a;
 }
 
-.recipe-image {
+#recipe-image-details {
   height: 200px;
+  position: absolute;
+  top: 342px;
+  left: 30px;
+  font-size: 18px;
+}
+
+.recipe-image-list{
+  height: 200px;
+  width: auto;
+ 
+}
+
+#content-size {
+  margin: auto;
+  width:50%;
+  height: 100%
 }
