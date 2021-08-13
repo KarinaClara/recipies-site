@@ -133,18 +133,18 @@ router.post("/recipe/:recipeId/like", isLoggedIn, (req, res, next) => {
 });
 
 // DELETE
-router.post("/recipe/:recipeId/delete", isLoggedIn, (req, res, next) => {
-  const { recipeId } = req.params;
-  console.log("CONSOLEE", recipeId);
-  Recipe.findByIdAndDelete(recipeId)
-    .then((recipeId) => {
-      console.log("CONSOLEE 22", recipeId);
-      res.redirect("/recipes");
-    })
-    .catch((error) => {
-      console.log("Error while deleting recipe", error);
-      next(error);
-    });
-});
+router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
+    const { recipeId } = req.params
+    Recipe.findByIdAndDelete(recipeId)
+        .then((recipeId) => {
+            res.redirect('/recipes')
+        })
+        .catch(error => {
+            console.log('Error while deleting recipe', error)
+            next(error)
+
+        })
+
+})
 
 module.exports = router;
