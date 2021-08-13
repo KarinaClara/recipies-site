@@ -8,14 +8,17 @@
             {{!-- <h3> {{this.title}} </h3> --}}
 
             <div class="card">
+                <div class="recipe-image-list-box">
                 {{#if this.imageURL}}
                 <img class="rounded border recipe-image-list" src="{{this.imageURL}}">
                 {{else}}
                 <img src="/images/default-image.jpeg" />
                 {{/if}}
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
                     <a href="/recipe/{{this._id}}" class="btn btn-primary">Details</a>
+                    <span id="heart-icon-left">&#10084; {{likes}}</span>
                 </div>
             </div>
         </div>

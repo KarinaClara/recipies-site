@@ -11,26 +11,36 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/"><img id="page-logo" src="/images/logo.png" alt="something's cooking logo" /></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" aria-current="page" href="/recipes">Recipes</a>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img id="page-logo" src="/images/logo.png" alt="something's cooking logo" /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" href="/recipes">Recipes</a>
 
-          {{#if userData}}
-          <a class="nav-link" href="/recipe/create">Create Recipe</a>
-          <a class="nav-link" href="/user-profile">My Profile</a>
-          <a class="nav-link" href="/logout">Logout</a>
-          {{else}}
-          <a class="nav-link" href="/signup">Signup</a>
-          <a class="nav-link" href="/login">Login</a>
-          {{/if}}
+            {{#if userData}}
+              <a class="nav-link" href="/user-profile/#favourites"><span id="heart-icon">&#10084; </span>
+                Favourite recipes</a>
+              <a class="nav-link" href="/recipe/create">Create Recipe</a>
+              <a class="nav-link" href="/user-profile">My Profile</a>
+              <a class="nav-link" href="/logout">Logout</a>
+            {{else}}
+              <a class="nav-link" href="/signup">Signup</a>
+              <a class="nav-link" href="/login">Login</a>
+            {{/if}}
+          </div>
         </div>
       </div>
     </div>

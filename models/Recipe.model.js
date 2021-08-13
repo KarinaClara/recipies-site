@@ -1,21 +1,19 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const recipeSchema = new Schema(
-{
-    author: {type: Schema.Types.ObjectId, ref: 'User'},
+const recipeSchema = new Schema({
+  author: { type: Schema.Types.ObjectId, ref: "User" },
 
-    title: { 
+  title: {
     type: String,
-    unique: true
-    },
+    unique: true,
+  },
 
-    content: String,
+  content: String,
 
-    imageURL: String, 
-
-    
-})
+  imageURL: String,
+  likes: Number,
+});
 
 // FOR REVIEWS USE EMBEDDED STRUCTURE
 

@@ -1,5 +1,16 @@
+body {
+  background: linear-gradient(45deg, #fbeff3 0%, #ffffff 100%);
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.bg-light {
+  --bs-bg-opacity: 1;
+  background-color: #fcf3f6 !important;
+}
+
 .navbar {
   padding: 0 30px;
+  width: 100%;
 }
 
 .navbar-collapse {
@@ -8,6 +19,15 @@
 
 #page-logo {
   height: 60px;
+}
+
+#heart-icon {
+  margin-right: 5px;
+}
+
+#heart-icon-left {
+  margin-left: 10px;
+  font-size: 18px;
 }
 
 .landing-page-body {
@@ -41,6 +61,7 @@
 
 .body-container {
   padding: 40px;
+  margin-top: 60px;
 }
 
 .page-headline {
@@ -94,9 +115,24 @@
 #user-profile-page {
   width: 80%;
   margin: 20px auto;
-  border: 2px solid #e80c7a;
   border-radius: 0.25rem;
   position: relative;
+}
+
+.profile-details {
+  border-top: 1px solid #e80c7a;
+  border-bottom: 1px solid #e80c7a;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-details div {
+  margin-right: 40px;
+}
+
+#user-photo {
+  height: 100px;
 }
 
 .user-profile-item {
@@ -107,13 +143,68 @@
   margin-right: 20px;
 }
 
+.user-recipes-div {
+  padding: 20px;
+}
+
+.user-recipes-div h5 {
+  margin-bottom: 20px;
+}
+
 .recipe-array-item {
   color: black;
+  font-size: 18px;
   text-decoration: none;
+}
+
+.fork-icon {
+  height: 20px;
+  margin-right: 10px;
 }
 
 .recipe-array-item:hover {
   color: #e80c7a;
+}
+
+#user-delete-button {
+  background: none;
+  color: inherit;
+}
+
+#user-delete-button:hover {
+  color: #e80c7a;
+}
+
+#like-recipe {
+  cursor: pointer;
+}
+
+.recipe-details-buttons {
+  display: flex;
+  height: 40px;
+  margin-top: 40px;
+}
+
+.recipe-details-buttons form,
+.recipe-details-buttons button {
+  height: 40px;
+  margin-right: 10px;
+  width: 140px;
+}
+
+.recipe-details-buttons form button {
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.recipe-details-buttons button a,
+#go-back-button a {
+  text-decoration: none;
+  color: white;
+}
+
+.recipe-details-single-button {
+  height: 30px;
 }
 
 #recipe-image-details {
@@ -124,14 +215,28 @@
   font-size: 18px;
 }
 
-.recipe-image-list{
-  height: 200px;
-  width: auto;
- 
+.recipe-image-list-box {
+  height: 260px;
+  /* object-fit: contain; */
+}
+.recipe-image-list {
+  width: 100%;
+  /* height: 260px;
+  width: auto; */
 }
 
 #content-size {
   margin: auto;
-  width:50%;
-  height: 100%
+  width: 50%;
+  height: 100%;
+}
+
+.card {
+  padding: 20px;
+}
+
+#go-back-button {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
 }
