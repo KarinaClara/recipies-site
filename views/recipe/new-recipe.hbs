@@ -1,26 +1,28 @@
+<div id="form">
+
 <h3> Add new Recipe</h3>
 
-<form action="/recipe/create" method="POST" enctype="multipart/form-data">
-
-    <label> Title: </label>
-    <input type="text" name="title" />
-
-    <br />
-   
-    <input type="hidden" name="author" value="{{userData._id}}"/>
-
-    <br />
-
-    <label> Content:</label>
-    <textarea type="text" name="content"> </textarea>
-
-    <br />
-
-    <label> Cover image:
+<form class="row g-3" action="/recipe/create" method="POST" enctype="multipart/form-data">
+    <div class="col-12">
+        <label class="form-label">Title</label>
+         <br />
+        <input type="text" name="title" />
+        <input type="hidden" name="author" value="{{userData._id}}" />
+    </div>
+    <div class="col-12">
+        <label class="form-label">Content</label>
+        <br />
+        <textarea type="text" name="content" cols="20" rows="2" value="{{recipe.content}}">{{recipe.content}}</textarea>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Cover image</label>
+        <br />
         <input type="file" name="recipe-cover-image" value="{{recipe.image}}" />
-    </label>
+    </div>
 
-    <br />
-
-    <button type="submit"> Add recipe </button>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Add recipe</button>
+    </div>
 </form>
+</div>
+

@@ -1,26 +1,25 @@
-<h2> All recipes</h2>
+<h3>All recipes</h3>
+<hr /><br />
+<div class="container">
+    <div class="row" id="testing-grid-row">
 
+        {{#each recipes}} </br>
+        <div class="col col-6 col-md-4" id="testing-grid" >
+            {{!-- <h3> {{this.title}} </h3> --}}
 
-{{#each recipes}} </br>
-<h3> Title: {{this.title}} </h3> 
-<h3> Image:</h3> 
-<img src=" {{this.imageURL}} "> 
+            <div class="card">
+                {{#if this.imageURL}}
+                <img class="rounded border recipe-image-list" src="{{this.imageURL}}">
+                {{else}}
+                <img src="/images/default-image.jpeg" />
+                {{/if}}
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <a href="/recipe/{{this._id}}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
 
-<br>
-</br> 
-
-<button><a href="/recipe/{{this._id}}"> Details </a> </button> 
-
-<br>
-</br> 
-
-{{!-- <form class="delete-form" action="/recipe/{{this._id}}/delete" method="POST"> --}}
-            {{!-- <button>Delete</button> --}}
-        </form>
-
-
-
-{{/each}}
-
-
-
+    </div>
+</div>
