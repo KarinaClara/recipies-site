@@ -1,34 +1,46 @@
 <h3> Recipe details: </h3>
 
-<section>
-    {{#if userData}}
-    <button class="btn btn-primary"><a href="/recipe/{{recipe._id}}/edit"> Edit recipe </a></button>
-    <br>
-    <br />
-    <form class="delete-form" action="/recipe/{{recipe._id}}/delete" method="POST">
-        <button class="btn btn-secondary">Delete recipe</button>
+<section class="recipe-details-buttons">
+  {{#if userData}}
+    <form action="/recipe/{{recipe._id}}/like" method="POST">
+      <button type="submit">Like</button>
     </form>
-    {{/if}}
+    <button class="btn btn-primary"><a href="/recipe/{{recipe._id}}/edit">
+        Edit recipe
+      </a></button>
+    {{! <br />
+    <br /> }}
+    <form class="delete-form" action="/recipe/{{recipe._id}}/delete" method="POST">
+      <button class="btn btn-secondary">Delete recipe</button>
+    </form>
+  {{/if}}
 </section>
 <hr /><br />
 <section>
-    <div class="small-9 cell main-text" id="content-size">
-        <h3>{{recipe.title}} </h3> <br />
-        <strong> Author:</strong> {{recipe.author.username}}
-        <hr /><br />
-        {{recipe.content}}
-        <br />
-    </div>
-    {{#if recipe.imageURL}}
+  <div class="small-9 cell main-text" id="content-size">
+    <h3>{{recipe.title}} </h3>
+    <br />
+    <strong>&#10084;</strong>
+    {{recipe.likes}}
+    <br />
+    <strong> Author:</strong>
+    {{recipe.author.username}}
+    <hr /><br />
+    {{recipe.content}}
+    <br />
+  </div>
+  {{#if recipe.imageURL}}
 
     <img id="recipe-image-details" class="rounded" src="{{recipe.imageURL}}" alt="{{recipe.title}}" />
-    {{else}}
+  {{else}}
     <img src="/images/default-image.jpeg" />
-    {{/if}}
+  {{/if}}
 
 </section>
 
-<br />
-<hr /><br />
-
-<button class="btn btn-primary"> <a href="/recipes">Back to list</a> </button>
+{{! <br />
+<hr /><br /> }}
+<div id="go-back-button">
+  <button class="btn btn-primary"> <a href="/recipes">Back to list</a> </button>
+  <button class="btn btn-primary"> <a href="/user-profile">Back to user profile</a> </button>
+</div>

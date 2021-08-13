@@ -25,6 +25,11 @@ body {
   margin-right: 5px;
 }
 
+#heart-icon-left {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
 .landing-page-body {
   margin-top: 40px;
   text-align: center;
@@ -174,6 +179,34 @@ body {
   cursor: pointer;
 }
 
+.recipe-details-buttons {
+  display: flex;
+  height: 40px;
+  margin-top: 40px;
+}
+
+.recipe-details-buttons form,
+.recipe-details-buttons button {
+  height: 40px;
+  margin-right: 10px;
+  width: 140px;
+}
+
+.recipe-details-buttons form button {
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.recipe-details-buttons button a,
+#go-back-button a {
+  text-decoration: none;
+  color: white;
+}
+
+.recipe-details-single-button {
+  height: 30px;
+}
+
 #recipe-image-details {
   height: 200px;
   position: absolute;
@@ -182,13 +215,28 @@ body {
   font-size: 18px;
 }
 
+.recipe-image-list-box {
+  height: 260px;
+  /* object-fit: contain; */
+}
 .recipe-image-list {
-  height: 200px;
-  width: auto;
+  width: 100%;
+  /* height: 260px;
+  width: auto; */
 }
 
 #content-size {
   margin: auto;
   width: 50%;
   height: 100%;
+}
+
+.card {
+  padding: 20px;
+}
+
+#go-back-button {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
 }
