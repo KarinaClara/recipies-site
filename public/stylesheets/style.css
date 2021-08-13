@@ -257,8 +257,25 @@ body {
 
 #go-back-button {
   position: fixed;
-  bottom: 30px;
+  bottom: 40px;
   left: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+#go-back-button button{
+  margin-bottom: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 15px;
+}
+
+footer {
+  background-color: lightgrey;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
 }
 
 @media (max-width: 900px) {
@@ -271,5 +288,8 @@ body {
   .section-recipe-details img {
     width: 200px;
     height: auto;
+    margin-bottom: 20px;
   }
+
+
 }
