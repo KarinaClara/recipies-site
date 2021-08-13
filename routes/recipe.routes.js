@@ -59,8 +59,6 @@ router.get("/recipe/:recipeId/edit", isLoggedIn, (req, res, next) => {
     });
 });
 
-<<<<<<< HEAD
-=======
 router.post("/recipe/:recipeId/edit", fileUploader.single("recipe-cover-image"), isLoggedIn, (req, res, next) => {
   const { recipeId } = req.params;
   const { author, title, content } = req.body;
@@ -86,7 +84,6 @@ router.post("/recipe/:recipeId/edit", fileUploader.single("recipe-cover-image"),
     });
 });
 
->>>>>>> cc069a93975ee4fbae78f0e7d7f5ab73c9bdbef3
 //DETAILS PAGE
 router.get("/recipe/:recipeId", (req, res, next) => {
   const recipeId = req.params.recipeId;
@@ -125,7 +122,6 @@ router.post("/recipe/:recipeId/like", isLoggedIn, (req, res, next) => {
 });
 
 // DELETE
-<<<<<<< HEAD
 router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
     Recipe.findByIdAndDelete(recipeId)
@@ -141,20 +137,3 @@ router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
 })
 
 module.exports = router;
-=======
-router.post("/recipe/:recipeId/delete", isLoggedIn, (req, res, next) => {
-  const { recipeId } = req.params;
-  console.log("CONSOLEE", recipeId);
-  Recipe.findByIdAndDelete(recipeId)
-    .then((recipeId) => {
-      console.log("CONSOLEE 22", recipeId);
-      res.redirect("/recipes");
-    })
-    .catch((error) => {
-      console.log("Error while deleting recipe", error);
-      next(error);
-    });
-});
-
-module.exports = router;
->>>>>>> cc069a93975ee4fbae78f0e7d7f5ab73c9bdbef3
