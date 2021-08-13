@@ -96,7 +96,6 @@ router.post('/recipe/:recipeId/edit', fileUploader.single('recipe-cover-image'),
 })
 
 
-
 //DETAILS PAGE
 router.get('/recipe/:recipeId', (req, res, next) => {
     const recipeId = req.params.recipeId
@@ -115,10 +114,8 @@ router.get('/recipe/:recipeId', (req, res, next) => {
 // DELETE
 router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
-    console.log('CONSOLEE', recipeId)
     Recipe.findByIdAndDelete(recipeId)
         .then((recipeId) => {
-            console.log('CONSOLEE 22', recipeId)
             res.redirect('/recipes')
         })
         .catch(error => {
