@@ -5,28 +5,29 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      trim: true, //remove blank spaces 
-      required: [true, 'Username is required.'],
-      unique: true
+      trim: true, //remove blank spaces
+      required: [true, "Username is required."],
+      unique: true,
     },
     email: {
       type: String,
-      required: [true, 'Email is required.'],
-      match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
+      required: [true, "Email is required."],
+      match: [/^\S+@\S+\.\S+$/, "Please use a valid email address."],
       unique: true,
       lowercase: true,
-      trim: true
+      trim: true,
     },
-    passwordHash: { //we store the password Hash
+    passwordHash: {
+      //we store the password Hash
       type: String,
-      required: [true, 'Password is required.']
-    }, 
+      required: [true, "Password is required."],
+    },
 
-    recipes: [{ type: Schema.Types.ObjectId, ref: "Recipe" }]
-
+    recipes: [{ type: Schema.Types.ObjectId, ref: "Recipe" }],
+    likes: [{ type: Schema.Types.ObjectId, ref: "Recipe" }],
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

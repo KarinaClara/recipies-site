@@ -16,7 +16,7 @@ router.get("/user-profile", isLoggedIn, (req, res) => {
   const userId = req.session.user._id;
 
   User.findById(userId)
-    .populate("recipes")
+    .populate("recipes likes")
     .then((singleUserFromDb) => {
       res.render("user/user-profile", { user: singleUserFromDb });
     })

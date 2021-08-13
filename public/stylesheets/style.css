@@ -1,5 +1,16 @@
+body {
+  background: linear-gradient(45deg, #fbeff3 0%, #ffffff 100%);
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.bg-light {
+  --bs-bg-opacity: 1;
+  background-color: #fcf3f6 !important;
+}
+
 .navbar {
   padding: 0 30px;
+  width: 100%;
 }
 
 .navbar-collapse {
@@ -8,6 +19,10 @@
 
 #page-logo {
   height: 60px;
+}
+
+#heart-icon {
+  margin-right: 5px;
 }
 
 .landing-page-body {
@@ -41,6 +56,7 @@
 
 .body-container {
   padding: 40px;
+  margin-top: 60px;
 }
 
 .page-headline {
@@ -94,9 +110,24 @@
 #user-profile-page {
   width: 80%;
   margin: 20px auto;
-  border: 2px solid #e80c7a;
   border-radius: 0.25rem;
   position: relative;
+}
+
+.profile-details {
+  border-top: 1px solid #e80c7a;
+  border-bottom: 1px solid #e80c7a;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-details div {
+  margin-right: 40px;
+}
+
+#user-photo {
+  height: 100px;
 }
 
 .user-profile-item {
@@ -107,11 +138,38 @@
   margin-right: 20px;
 }
 
+.user-recipes-div {
+  padding: 20px;
+}
+
+.user-recipes-div h5 {
+  margin-bottom: 20px;
+}
+
 .recipe-array-item {
   color: black;
+  font-size: 18px;
   text-decoration: none;
+}
+
+.fork-icon {
+  height: 20px;
+  margin-right: 10px;
 }
 
 .recipe-array-item:hover {
   color: #e80c7a;
+}
+
+#user-delete-button {
+  background: none;
+  color: inherit;
+}
+
+#user-delete-button:hover {
+  color: #e80c7a;
+}
+
+#like-recipe {
+  cursor: pointer;
 }

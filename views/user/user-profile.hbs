@@ -4,23 +4,45 @@
   <div class="buttons-user-profile">
     <a href="/user-profile/edit"> Edit </a>
     <form class="delete-form" action="/user-profile/delete" method="POST">
-      <button>Delete</button>
+      <button id="user-delete-button">Delete</button>
     </form>
   </div>
 
-  <div class="user-profile-item">
-    <p>Username:</p>
-    <h5> {{user.username}}</h5>
+  <div class="profile-details">
+    <div><img id="user-photo" src="/images/user.png" alt="user-photo" /></div>
+    <div>
+      <div class="user-profile-item">
+        <p>Username:</p>
+        <h5> {{user.username}}</h5>
+      </div>
+      <div class="user-profile-item">
+        <p>Email: </p>
+        <h5>{{user.email}}</h5>
+      </div>
+    </div>
   </div>
-  <div class="user-profile-item">
-    <p>Email: </p>
-    <h5>{{user.email}}</h5>
+
+  <div class="user-recipes-div">
+    <h5>All Your Recipes:</h5>
+
+    {{#each user.recipes}}
+      <div>
+        <img class="fork-icon" src="/images/fork.png" alt="fork-icon" />
+        <a class="recipe-array-item" href="/recipe/{{this._id}}"> {{this.title}}</a>
+      </div>
+    {{/each}}
+
   </div>
 
-  <h6>Your recipes:</h6>
+  <div class="user-recipes-div">
+    <h5 id="favourites"><span id="heart-icon">&#10084; </span> Your Favourite Recipes:</h5>
 
-  {{#each user.recipes}}
-    <a class="recipe-array-item" href="/recipe/{{this._id}}"> &#9755; {{this.title}}</a>
-  {{/each}}
+    {{#each user.likes}}
+      <div>
+        <img class="fork-icon" src="/images/fork.png" alt="fork-icon" />
+        <a class="recipe-array-item" href="/recipe/{{this._id}}"> {{this.title}}</a>
+      </div>
+    {{/each}}
 
+  </div>
 </div>
