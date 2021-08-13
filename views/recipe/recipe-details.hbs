@@ -16,7 +16,12 @@
   {{/if}}
 </section>
 <hr /><br />
-<section>
+<section class="section-recipe-details">
+  {{#if recipe.imageURL}}
+    <img class="rounded" src="{{recipe.imageURL}}" alt="{{recipe.title}}" />
+  {{else}}
+    <img src="/images/default-image.jpeg" />
+  {{/if}}
   <div class="small-9 cell main-text" id="content-size">
     <h3>{{recipe.title}} </h3>
     <br />
@@ -29,12 +34,6 @@
     {{recipe.content}}
     <br />
   </div>
-  {{#if recipe.imageURL}}
-
-    <img id="recipe-image-details" class="rounded" src="{{recipe.imageURL}}" alt="{{recipe.title}}" />
-  {{else}}
-    <img src="/images/default-image.jpeg" />
-  {{/if}}
 
 </section>
 

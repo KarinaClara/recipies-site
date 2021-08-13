@@ -103,16 +103,27 @@ router.get("/recipe/:recipeId", (req, res, next) => {
 
 router.post("/recipe/:recipeId/like", isLoggedIn, (req, res, next) => {
   const { recipeId } = req.params;
+  const currentUser = req.session.user;
+  let recipeFromDB;
 
   Recipe.findById(recipeId)
     .then((recipe) => {
-      const currentLikes = recipe.likes ?? 0;
-      return Recipe.findByIdAndUpdate(recipeId, { likes: currentLikes + 1 });
+      recipeFromDB = recipe;
+      return User.findById(currentUser._id);
+    })
+    .then((user) => {
+      const currentLikes = recipeFromDB.likes ?? 0;
+      if (user.likes.includes(recipeId)) {
+        // number of likes stays the same
+        return Recipe.findByIdAndUpdate(recipeId, { likes: currentLikes });
+      } else {
+        return Recipe.findByIdAndUpdate(recipeId, { likes: currentLikes + 1 });
+      }
     })
     .then((recipe) => {
-      return User.findByIdAndUpdate(recipe.author, { $addToSet: { likes: recipe._id } });
+      return User.findByIdAndUpdate(currentUser._id, { $addToSet: { likes: recipe._id } }, { new: true });
     })
-    .then((recipe) => {
+    .then(() => {
       res.redirect("/recipe/" + recipeId);
     })
     .catch((error) => {
