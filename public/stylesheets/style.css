@@ -1,4 +1,5 @@
 body {
+  position: relative;
   background: linear-gradient(45deg, #fbeff3 0%, #ffffff 100%);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -271,7 +272,10 @@ body {
 }
 
 footer {
-  background-color: lightgrey;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  background-color: rgb(232, 232, 232);
   height: 40px;
   text-align: center;
   padding: 10px;
