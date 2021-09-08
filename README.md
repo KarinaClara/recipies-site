@@ -3,3 +3,6 @@
 Share your favourite recipes and discover new ones on our platform.
 
 http://recipe-project2.herokuapp.com/
+
+<img width="811" alt="something's cooking" src="https://user-images.githubusercontent.com/67471786/132460766-89582dae-4a21-48f8-98db-bdd5f78e4fea.png">
+
