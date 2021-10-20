@@ -79,7 +79,7 @@ router.post("/user-profile/delete", isLoggedIn, (req, res, next) => {
 });
 
 router.get("/signup", isLoggedOut, (req, res) => {
-  console.log("INSIDE GET ROUTE");
+
   res.render("user/signup");
 });
 

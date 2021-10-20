@@ -15,7 +15,7 @@ const recipeSchema = new Schema({
   likes: Number,
 });
 
-// FOR REVIEWS USE EMBEDDED STRUCTURE
+
 
 const Recipe = model("Recipe", recipeSchema);
 
