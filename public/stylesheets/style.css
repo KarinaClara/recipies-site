@@ -1,7 +1,11 @@
 body {
   position: relative;
-  background: linear-gradient(45deg, #fbeff3 0%, #ffffff 100%);
+  background: linear-gradient(45deg, #f3cbcc 0%, #ffffff 100%);
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  margin-bottom: 20px;
 }
 
 .col {
@@ -9,7 +13,7 @@ body {
 }
 .bg-light {
   --bs-bg-opacity: 1;
-  background-color: #fcf3f6 !important;
+  background-color: #f3cbcc !important;
 }
 
 .navbar {
@@ -21,6 +25,18 @@ body {
   justify-content: flex-end;
 }
 
+.nav-link {
+  color: black !important;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.nav-link.menu:hover {
+  color: #e80c7a !important;
+}
+
 #page-logo {
   height: 60px;
 }
@@ -30,7 +46,7 @@ body {
 }
 
 #heart-icon-left {
-  margin-left: 10px;
+  margin: 0 20px;
   font-size: 18px;
 }
 
@@ -51,7 +67,7 @@ body {
 }
 
 .landing-page-all-buttons a {
-  color: black;
+  color: #e80c7a;
   font-size: 22px;
   border: 1px solid #e80c7a;
   border-radius: 0.25rem;
@@ -83,7 +99,7 @@ body {
 
 .buttons-user-profile a,
 .buttons-user-profile form button {
-  color: black;
+  color: #e80c7a;
   width: 80px;
   background-color: none;
   text-decoration: none;
@@ -166,17 +182,14 @@ body {
   margin-right: 10px;
 }
 
-.recipe-array-item:hover {
+.recipe-array-item:hover,
+#user-delete-button:hover {
   color: #e80c7a;
 }
 
 #user-delete-button {
   background: none;
   color: inherit;
-}
-
-#user-delete-button:hover {
-  color: #e80c7a;
 }
 
 #like-recipe {
@@ -222,8 +235,6 @@ body {
 
 #recipe-image-details {
   position: absolute;
-  /* top: 342px;
-  left: 30px; */
   top: 0;
   left: 0;
   font-size: 18px;
@@ -232,13 +243,28 @@ body {
 .card {
   border: none !important;
   box-shadow: 4px 4px 6px 4px rgba(106, 106, 109, 0.1);
+  padding: 7px;
+  height: 100%;
 }
+
+.card-body{
+  width:100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .recipe-image-list-box {
-  height: 20vh;
-  width: auto;
+  height: 80%;
+  width: 100%;
   margin-bottom: 10px;
-  object-fit: contain;
+  /* object-fit: contain; */
   text-align: center;
+}
+
+.recipe-image-list-box img {
+  object-fit: cover;
 }
 .recipe-image-list {
   width: 100%;
@@ -252,10 +278,6 @@ body {
   margin: auto;
   width: 50%;
   height: 100%;
-}
-
-.card {
-  padding: 20px;
 }
 
 #go-back-button {
@@ -277,7 +299,7 @@ footer {
   position: absolute;
   width: 100%;
   bottom: 0px;
-  background-color: rgb(232, 232, 232);
+  background-color: #f3cbcc;
   height: 40px;
   text-align: center;
   padding: 10px;

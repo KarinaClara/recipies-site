@@ -1,10 +1,10 @@
 <h3>All recipes</h3>
 <hr /><br />
 <div class="container">
-    <div class="row">
+    <div class="row row-recipes">
 
         {{#each recipes}} </br>
-        <div class="col col-6 col-md-4" >
+        <div class="col col-12 col-sm-6 col-md-6 col-lg-4" >
 
             <div class="card">
                 <div class="recipe-image-list-box">
@@ -16,8 +16,8 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{this.title}}</h5>
-                    <a href="/recipe/{{this._id}}" class="btn btn-primary">Details</a>
                     <span id="heart-icon-left">&#10084; {{likes}}</span>
+                    <a href="/recipe/{{this._id}}" class="btn btn-primary">Details</a>
                 </div>
             </div>
         </div>
