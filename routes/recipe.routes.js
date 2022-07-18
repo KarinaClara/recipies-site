@@ -29,19 +29,32 @@ router.get("/recipe/create", isLoggedIn, (req, res, next) => {
 router.post("/recipe/create", fileUploader.single("recipe-cover-image"), isLoggedIn, (req, res, next) => {
   const { author, title, content } = req.body;
 
-  const imageURL = req.file?.path;
+  const imageURL = req.file 
+  ? req.file.path 
+  : 'https://res.cloudinary.com/dj5xi7n1g/image/upload/v1658135924/recipe-site/o23odfqhcn1udclpq2yq.png';
 
-  Recipe.create({ author, title, content, imageURL })
-    .then((newRecipe) => {
-      return User.findByIdAndUpdate(author, { $push: { recipes: newRecipe._id, newRecipe } });
+  Recipe.find({title})
+    .then((rec)=> {
+      if (rec.length > 0) {
+        res.render("recipe/new-recipe", {errorMessage: "Recipe with this title already in database!"});
+      }
+      else {
+        Recipe.create({ author, title, content, imageURL })
+        .then((newRecipe) => {
+          return User.findByIdAndUpdate(author, { $push: { recipes: newRecipe._id, newRecipe } });
+        })
+        .then((newRecipe) => {
+          res.redirect("/recipes");
+        })
+        .catch((error) => {
+          console.log("Error while saving recipe", error);
+          next(error);
+        });
+      }
     })
-    .then((newRecipe) => {
-      res.redirect("/recipes");
-    })
-    .catch((error) => {
-      console.log("Error while saving recipe", error);
-      next(error);
-    });
+    .catch(err => console.log(err))
+
+
 });
 
 //EDIT & UPDATE

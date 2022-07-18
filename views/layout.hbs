@@ -28,17 +28,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" href="/recipes">Recipes</a>
+            <a class="nav-link menu" href="/recipes">Recipes</a>
 
             {{#if userData}}
-              <a class="nav-link" href="/user-profile/#favourites"><span id="heart-icon">&#10084; </span>
+              <a class="nav-link menu" href="/user-profile/#favourites"><span id="heart-icon">&#10084; </span>
                 Favourite recipes</a>
-              <a class="nav-link" href="/recipe/create">Create Recipe</a>
-              <a class="nav-link" href="/user-profile">My Profile</a>
-              <a class="nav-link" href="/logout">Logout</a>
+              <a class="nav-link menu" href="/recipe/create">Create Recipe</a>
+              <a class="nav-link menu" href="/user-profile">My Profile</a>
+              <a class="nav-link menu" href="/logout">Logout</a>
             {{else}}
-              <a class="nav-link" href="/signup">Signup</a>
-              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link menu" href="/signup">Signup</a>
+              <a class="nav-link menu" href="/login">Login</a>
             {{/if}}
           </div>
         </div>
@@ -51,7 +51,7 @@
 
   </div>
 <footer>
- 
+
     <div>
       © 2021 Copyright:
       <a>somethingscooking.com</a>
