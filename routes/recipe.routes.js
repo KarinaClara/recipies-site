@@ -29,7 +29,10 @@ router.get("/recipe/create", isLoggedIn, (req, res, next) => {
 router.post("/recipe/create", fileUploader.single("recipe-cover-image"), isLoggedIn, (req, res, next) => {
   const { author, title, content } = req.body;
 
-  const imageURL = req.file?.path;
+  const imageURL = req.file 
+  ? req.file.path 
+  : 'https://res.cloudinary.com/dj5xi7n1g/image/upload/v1658135924/recipe-site/o23odfqhcn1udclpq2yq.png';
+
 
   Recipe.create({ author, title, content, imageURL })
     .then((newRecipe) => {

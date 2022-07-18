@@ -8,8 +8,7 @@
     <button class="btn btn-primary"><a href="/recipe/{{recipe._id}}/edit">
         Edit recipe
       </a></button>
-    {{! <br />
-    <br /> }}
+      
     <form class="delete-form" action="/recipe/{{recipe._id}}/delete" method="POST">
       <button class="btn btn-secondary">Delete recipe</button>
     </form>
@@ -17,11 +16,7 @@
 </section>
 <hr /><br />
 <section class="section-recipe-details">
-  {{#if recipe.imageURL}}
-    <img class="rounded" src="{{recipe.imageURL}}" alt="{{recipe.title}}" />
-  {{else}}
-    <img src="/images/default-image.jpeg" />
-  {{/if}}
+  <img class="rounded" src="{{recipe.imageURL}}" alt="{{recipe.title}}" />
   <div class="small-9 cell main-text" id="content-size">
     <h3>{{recipe.title}} </h3>
     <br />
@@ -37,8 +32,6 @@
 
 </section>
 
-{{! <br />
-<hr /><br /> }}
 <div id="go-back-button">
   <button class="btn btn-primary"> <a href="/recipes">Back to list</a> </button>
   <button class="btn btn-primary"> <a href="/user-profile">Back to user profile</a> </button>
