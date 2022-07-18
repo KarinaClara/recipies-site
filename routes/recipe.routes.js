@@ -33,18 +33,28 @@ router.post("/recipe/create", fileUploader.single("recipe-cover-image"), isLogge
   ? req.file.path 
   : 'https://res.cloudinary.com/dj5xi7n1g/image/upload/v1658135924/recipe-site/o23odfqhcn1udclpq2yq.png';
 
+  Recipe.find({title})
+    .then((rec)=> {
+      if (rec.length > 0) {
+        res.render("recipe/new-recipe", {errorMessage: "Recipe with this title already in database!"});
+      }
+      else {
+        Recipe.create({ author, title, content, imageURL })
+        .then((newRecipe) => {
+          return User.findByIdAndUpdate(author, { $push: { recipes: newRecipe._id, newRecipe } });
+        })
+        .then((newRecipe) => {
+          res.redirect("/recipes");
+        })
+        .catch((error) => {
+          console.log("Error while saving recipe", error);
+          next(error);
+        });
+      }
+    })
+    .catch(err => console.log(err))
 
-  Recipe.create({ author, title, content, imageURL })
-    .then((newRecipe) => {
-      return User.findByIdAndUpdate(author, { $push: { recipes: newRecipe._id, newRecipe } });
-    })
-    .then((newRecipe) => {
-      res.redirect("/recipes");
-    })
-    .catch((error) => {
-      console.log("Error while saving recipe", error);
-      next(error);
-    });
+
 });
 
 //EDIT & UPDATE

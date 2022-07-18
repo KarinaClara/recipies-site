@@ -4,9 +4,14 @@
   <form class="row g-3" action="/recipe/create" method="POST" enctype="multipart/form-data">
     <div class="col-12">
       <label class="form-label">Title</label>
-      <input type="text" class="form-control" name="title" required/>
+      <input type="text" class="form-control" name="title" required />
       <input type="hidden" name="author" value="{{userData._id}}" />
     </div>
+    {{#if errorMessage}}
+      <div class="error">
+        <p>{{errorMessage}}</p>
+      </div>
+    {{/if}}
     <div class="col-12">
       <label class="form-label">Content</label>
       <textarea
