@@ -241,6 +241,8 @@ body {
 }
 
 .card {
+  background-color: rgba(243, 203, 204, 0.1);
+  /* background-color: #f3cbcc; */
   border: none !important;
   box-shadow: 4px 4px 6px 4px rgba(106, 106, 109, 0.1);
   padding: 7px;
