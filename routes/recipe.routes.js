@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 //middleware
 const isLoggedIn = require("../middleware/isLoggedIn");
+const isAuthor = require("../middleware/isAuthor")
 
 //cloudinary
 const Recipe = require("../models/Recipe.model");
@@ -64,7 +65,12 @@ router.get("/recipe/:recipeId/edit", isLoggedIn, (req, res, next) => {
 
   Recipe.findById(recipeId)
     .then((recipeToEdit) => {
-      res.render("recipe/recipe-edit", { recipe: recipeToEdit });
+      if (recipeToEdit.author == req.session.user._id) {
+        res.render("recipe/recipe-edit", { recipe: recipeToEdit });
+      }
+      else {
+        res.redirect(`/recipe/${recipeId}`);
+      }
     })
     .catch((error) => {
       console.log("There was an error while updating data", error);
@@ -98,7 +104,7 @@ router.post("/recipe/:recipeId/edit", fileUploader.single("recipe-cover-image"),
 });
 
 //DETAILS PAGE
-router.get("/recipe/:recipeId", (req, res, next) => {
+router.get("/recipe/:recipeId", isAuthor, (req, res, next) => {
   const recipeId = req.params.recipeId;
 
   Recipe.findById(recipeId)
@@ -148,16 +154,25 @@ router.post("/recipe/:recipeId/like", isLoggedIn, (req, res, next) => {
 // DELETE
 router.post('/recipe/:recipeId/delete', isLoggedIn, (req, res, next) => {
     const { recipeId } = req.params
-    Recipe.findByIdAndDelete(recipeId)
-        .then((recipeId) => {
-            res.redirect('/recipes')
-        })
-        .catch(error => {
-            console.log('Error while deleting recipe', error)
-            next(error)
 
-        })
-
+    Recipe.findById(recipeId)
+      .populate('author')
+      .then(recipe => {
+        if (req.session.user._id == recipe.author._id) {
+          console.log('yes')
+          Recipe.findByIdAndDelete(recipeId)
+          .then(() => {
+              res.redirect('/recipes')
+          })
+          .catch(error => {
+              console.log('Error while deleting recipe', error)
+              next(error)
+          })
+        } else {
+          res.redirect(`/recipe/${recipeId}`);
+        }
+      })
+      .catch(err=>console.log(err))
 })
 
 module.exports = router;

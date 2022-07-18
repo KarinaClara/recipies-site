@@ -5,13 +5,16 @@
     <form action="/recipe/{{recipe._id}}/like" method="POST">
       <button type="submit">Like</button>
     </form>
-    <button class="btn btn-primary"><a href="/recipe/{{recipe._id}}/edit">
-        Edit recipe
-      </a></button>
-      
-    <form class="delete-form" action="/recipe/{{recipe._id}}/delete" method="POST">
-      <button class="btn btn-secondary">Delete recipe</button>
-    </form>
+
+    {{#if isTheAuthor}}
+      <button class="btn btn-primary"><a href="/recipe/{{recipe._id}}/edit">
+          Edit recipe
+        </a></button>
+      <form class="delete-form" action="/recipe/{{recipe._id}}/delete" method="POST">
+        <button class="btn btn-secondary">Delete recipe</button>
+      </form>
+    {{/if}}
+
   {{/if}}
 </section>
 <hr /><br />
